@@ -1,2 +1,11 @@
 @import "tailwindcss";
 
+.login-background {
+  background-image: url('/netflix_background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+  color: white;
+}
