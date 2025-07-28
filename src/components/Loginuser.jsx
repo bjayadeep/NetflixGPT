@@ -9,6 +9,8 @@ import {
 } from "firebase/auth";
 import Header from "./Header";
 import { addUser } from "../utils/userSlice";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const Loginuser = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -33,7 +35,11 @@ const Loginuser = () => {
     const confirmPasswordValue = confirmPassword.current?.value;
     const fullNameValue = fullName.current?.value;
 
-    if (!emailValue || !passwordValue || (!isSignIn && (!confirmPasswordValue || !fullNameValue))) {
+    if (
+      !emailValue ||
+      !passwordValue ||
+      (!isSignIn && (!confirmPasswordValue || !fullNameValue))
+    ) {
       setErrorMessage("Please fill in all required fields.");
       return;
     }
@@ -46,9 +52,17 @@ const Loginuser = () => {
     try {
       let userCredential;
       if (isSignIn) {
-        userCredential = await signInWithEmailAndPassword(auth, emailValue, passwordValue);
+        userCredential = await signInWithEmailAndPassword(
+          auth,
+          emailValue,
+          passwordValue
+        );
       } else {
-        userCredential = await createUserWithEmailAndPassword(auth, emailValue, passwordValue);
+        userCredential = await createUserWithEmailAndPassword(
+          auth,
+          emailValue,
+          passwordValue
+        );
         await updateProfile(userCredential.user, {
           displayName: fullNameValue,
         });
@@ -89,6 +103,12 @@ const Loginuser = () => {
     }
   };
 
+  const user = useSelector((state) => state.user);
+
+  if (user) {
+    return <Navigate to="/browse" replace />;
+  }
+
   return (
     <div className="relative w-full h-screen">
       <Header />
@@ -96,7 +116,7 @@ const Loginuser = () => {
       {/* Background Image */}
       <img
         className="w-full h-screen object-cover brightness-[.6] absolute -z-10"
-        src="/netflix_backgrounds.png"
+        src="/movies_background.jpg"
         alt="login-background"
       />
 
@@ -106,7 +126,9 @@ const Loginuser = () => {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
                    bg-black bg-opacity-80 p-10 rounded-md w-[90%] max-w-md text-white shadow-lg"
       >
-        <h2 className="text-3xl font-bold mb-6">{isSignIn ? "Sign In" : "Sign Up"}</h2>
+        <h2 className="text-3xl font-bold mb-6">
+          {isSignIn ? "Sign In" : "Sign Up"}
+        </h2>
 
         {!isSignIn && (
           <input
