@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { removeUser } from "../utils/userSlice";
-import { ChevronDown } from "lucide-react"; 
+import { ChevronDown } from "lucide-react";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
@@ -26,7 +26,7 @@ const Header = () => {
   const toggleMenu = () => setShowMenu((prev) => !prev);
 
   return (
-    <div className="flex justify-between items-center px-6 py-4 bg-gradient-to-b from-black z-10 absolute w-full">
+    <div className="flex justify-between items-center px-6 py-4 bg-gradient-to-b from-black to-transparent h-20 w-full fixed top-0 z-50">
       {/* Netflix Logo */}
       <Link to="/">
         <img
