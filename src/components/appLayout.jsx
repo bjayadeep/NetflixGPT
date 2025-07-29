@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const AppLayout = () => {
   return (
     <>
-      <Body /> {/* Sets up onAuthStateChanged listener once */}
+      <Body />
       <Header />
       <Outlet /> 
     </>

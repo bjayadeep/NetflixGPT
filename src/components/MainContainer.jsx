@@ -1,20 +1,23 @@
-// components/MainContainer.jsx
 import { useSelector } from "react-redux";
 import Hero from "./Hero";
+import MovieList from "./MovieList";
 
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
 
   if (!movies || movies.length === 0) return null;
 
-  const mainMovie = movies[0]; 
+  const randomIndex = Math.floor(Math.random() * Math.min(20, movies.length));
+  const mainMovie = movies[randomIndex];
 
   return (
-    <Hero
-      movieId={mainMovie.id}
-      title={mainMovie.title}
-      overview={mainMovie.overview}
-    />
+    <div>
+      <Hero
+        movieId={mainMovie.id}
+        title={mainMovie.title}
+        overview={mainMovie.overview}
+      />
+    </div>
   );
 };
 

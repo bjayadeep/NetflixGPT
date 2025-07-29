@@ -1,5 +1,7 @@
 @import "tailwindcss";
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 
+/* Custom styles below */
 .login-background {
   background-image: url('/netflix_background.jpg');
   background-size: cover;
@@ -8,4 +10,17 @@
   min-height: 100vh;
   position: relative;
   color: white;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body{
+  background-color: black;
 }
