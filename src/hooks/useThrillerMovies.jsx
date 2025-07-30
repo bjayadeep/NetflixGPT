@@ -8,7 +8,7 @@ const useThrillerMovies = () => {
 
   const fetchThriller = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/discover/movie?with_genres=53&sort_by=popularity.desc",
+        'https://api.themoviedb.org/3/discover/movie?with_genres=53&sort_by=popularity.desc&vote_count.gte=100',
       API_OPTIONS
     );
     const json = await data.json();

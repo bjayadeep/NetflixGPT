@@ -1,10 +1,10 @@
-import useTrailer from "../hooks/useTrailer";
+import useMovieTrailer from "../hooks/useMovieTrailer";
 import VideoBackground from "./VideoBackground";
 import VideoOverlay from "./VideoOverlay";
 import { useSelector } from "react-redux";
 
 const Hero = ({ movieId, title, overview }) => {
-  useTrailer(movieId);
+  useMovieTrailer(movieId);
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
   return (
     <div className="relative w-full h-screen">
