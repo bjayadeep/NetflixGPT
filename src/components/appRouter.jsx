@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import AppLayout from "./appLayout";
+import AppLayout from "./AppLayout";
 import Loginuser from "./Loginuser";
 import Browse from "./Browse";
+import MovieDetailPage from "./MovieDetailPage";
+import LikedMoviesPage from "./LikedMoviesPage";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />, 
+    element: <AppLayout />,
     children: [
       {
         path: "/",
@@ -15,6 +17,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/browse",
         element: <Browse />,
+      },
+      {
+        path: "/movie/:movieId",
+        element: <MovieDetailPage />,
+      },
+      {
+        path: "/liked",
+        element: <LikedMoviesPage />,
       },
     ],
   },

@@ -7,13 +7,13 @@ const useMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
 
   const getMovieVideos = async () => {
+    if (!movieId) return;
     try {
       const data = await fetch(
         `https://api.themoviedb.org/3/movie/${movieId}/videos`,
         API_OPTIONS
       );
       const json = await data.json();
-
       const trailerArray = json.results.filter(
         (video) => video.type === "Trailer"
       );
@@ -25,8 +25,8 @@ const useMovieTrailer = (movieId) => {
   };
 
   useEffect(() => {
-    if (movieId) getMovieVideos();
-  }, [movieId]);
+    getMovieVideos();
+  }, [movieId, dispatch]);
 };
 
 export default useMovieTrailer;

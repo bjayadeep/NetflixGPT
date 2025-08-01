@@ -5,11 +5,9 @@ const ProtectedRoute = ({ children }) => {
   const user = useSelector((state) => state.user);
 
   if (!user) {
-    // User is not logged in, redirect to login
     return <Navigate to="/" replace />;
   }
 
-  // User is logged in, render the protected component
   return children;
 };
 

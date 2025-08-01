@@ -9,6 +9,7 @@ const GptSearchBar = () => {
   const searchText = useRef(null);
   const dispatch = useDispatch();
   const langKey = useSelector((store) => store.language.language);
+  const englishLang = LANGUAGES.find((lang) => lang.identifier === "en");
   const currentLang = LANGUAGES.find((lang) => lang.identifier === langKey);
 
   const [error, setError] = useState(null);
@@ -25,11 +26,12 @@ const GptSearchBar = () => {
     setError(null);
 
     try {
-      const prompt = `${currentLang?.gptPromptPrefix || ""}${query}${
-        currentLang?.gptPromptSuffix || ""
+      const prompt = `${englishLang?.gptPromptPrefix || ""}${query}${
+        englishLang?.gptPromptSuffix || ""
       }`;
 
       const gptText = await fetchGptMovieSuggestions(prompt);
+      console.log("Gemini's raw response",gptText);
 
       const movieNames = gptText.split(",").map((m) => m.trim());
       const movieResults = await Promise.all(movieNames.map(searchMovieTMDB));

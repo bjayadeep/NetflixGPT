@@ -8,39 +8,40 @@ import useRomanticMovies from "../hooks/useRomanticMovies";
 import useThrillerMovies from "../hooks/useThrillerMovies";
 import useHorrorMovies from "../hooks/useHorrorMovies";
 import useComedyMovies from "../hooks/useComedyMovies";
-import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import useAnimeMovies from "../hooks/useAnimeMovies";
 import GptSearchpage from "./GptSearchpage";
 import { useSelector } from "react-redux";
+import SimplifiedHero from "./SimplifiedHero";
 
 const Browse = () => {
-  const showGptSearch = useSelector(store=>store.gpt.showGptSearch); 
+ const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+ const isPlaying = useSelector((store) => store.movies.isPlaying);
+ 
+ useNowPlayingMovies();
+ useTrendingMovies();
+ useTopRatedMovies();
+ useUpcomingMovies();
+ usePopularTeluguMovies();
+ usePopularHindiMovies();
+ useRomanticMovies();
+ useThrillerMovies();
+ useHorrorMovies();
+ useComedyMovies();
+ useAnimeMovies();
 
-  useNowPlayingMovies();
-  useTrendingMovies();
-  useTopRatedMovies();
-  useUpcomingMovies();
-  usePopularTeluguMovies();
-  usePopularHindiMovies();
-  useRomanticMovies();
-  useThrillerMovies();
-  useHorrorMovies();
-  useComedyMovies();
-  useAnimeMovies();
-
-  return (
-    <div>
-      {showGptSearch ? (
-        <GptSearchpage />
-      ) : (
-        <>
-          <MainContainer />
-          <SecondaryContainer />
-        </>
-      )}
-    </div>
-  );
+ return (
+ <div className="relative">
+   {showGptSearch ? (
+ <GptSearchpage />
+ ) : (
+ <>
+ <SimplifiedHero />
+ {!isPlaying && <SecondaryContainer />}
+  </>
+ )}
+ </div>
+ );
 };
 
 export default Browse;

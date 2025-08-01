@@ -2,7 +2,7 @@ import React from "react";
 import MovieCard from "./MovieCard";
 import useHorizontalScroll from "../hooks/useHorizontalScroll";
 
-const MovieList = ({ title, movies,transparentBg }) => {
+const MovieList = ({ title, movies, transparentBg }) => {
   const { scrollRef, scrollLeft, scrollRight } = useHorizontalScroll();
 
   if (!movies || movies.length === 0) return null;
@@ -29,7 +29,7 @@ const MovieList = ({ title, movies,transparentBg }) => {
 
       <div ref={scrollRef} className="flex overflow-x-auto no-scrollbar gap-4">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} posterPath={movie.poster_path} />
+          <MovieCard key={movie.id} movieId={movie.id} posterPath={movie.poster_path} />
         ))}
       </div>
     </div>
